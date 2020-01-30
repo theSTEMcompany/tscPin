@@ -67,6 +67,8 @@ bool TscPin::isDebounced(int signal)
         this->lastDebounceTime = millis();
     }
 
+    this->lastDebounceSignal = pinSignal;
+
     if (((millis() - this->lastDebounceTime) > this->debounceDelay) && (pinSignal == signal)) {
         return true;
     }
@@ -76,7 +78,7 @@ bool TscPin::isDebounced(int signal)
 
 void TscPin::setDebounceDelay(int debounceDelayMillis)
 {
-    this->debounceDelay = delay;
+    this->debounceDelay = debounceDelayMillis;
 }
 
 void TscPin::initialize()
